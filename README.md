@@ -1,3 +1,3 @@
 # README
 
-Alpha Blog Readme file
+Alpha Blog Readme file by Ern
