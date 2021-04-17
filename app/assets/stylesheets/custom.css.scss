@@ -1,0 +1,53 @@
+@import 'bootstrap/dist/css/bootstrap';
+
+.navbar {
+  background-color: #000000 !important;
+}
+
+.nav-link {
+  color: #ffffff !important;
+}
+
+#logo {
+  color: #ffffff !important;
+  float: left;
+  font-size: 1.7em;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+   
+  
+.jumbotron {
+  padding: 4rem 2rem;
+  margin-bottom: 2rem;
+  background-image: asset-url('giorgi-iremadze-cHE74pPOsdQ-unsplash.jpg');
+  background-color: var(--bs-light);
+  border-radius: .3rem;  
+  height: 450px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+}
+
+body, main {
+  background: #ccc;
+}
+  
+footer {
+  position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.btn-block {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+.card-title a:hover {
+  text-decoration: underline;
+}
