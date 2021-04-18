@@ -1,0 +1,24 @@
+<% @users.each do |user| %>
+  <div class="row justify-content-center mb-4">
+    <div class="card text-center col-8 shadow mb-4 bg-white rounded">
+      <div class="card-header font-italic">
+        <%= link_to user.username, user, class: "text-success" %>
+      </div>
+      <div class="card-body">
+        <div class="img thumbnail">
+          <%= link_to gravatar_for(user, size: 150), user %>
+        </div>
+        
+        <p class="card-text"><%= pluralize(user.articles.count, "article") %></p>
+        
+          <%= link_to 'View profile', user, class: "btn btn-outline-primary" %>
+          <%= link_to 'Edit profile', edit_user_path(user), class: "btn btn-outline-success" %> 
+          <!-- <%= link_to 'Delete', user, class: "btn btn-outline-danger", method: :delete, data: { confirm: "Are you sure?" } %> -->
+        
+      </div>
+      <div class="card-footer text-muted">
+        <small>Joined <%= time_ago_in_words(user.created_at) %> ago</small>
+      </div>
+    </div>
+  </div>
+<% end %>

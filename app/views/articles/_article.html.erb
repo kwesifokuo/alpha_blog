@@ -2,7 +2,9 @@
   <div class="row justify-content-center mb-4">
     <div class="card text-center col-8 shadow mb-4 bg-white rounded">
       <div class="card-header font-italic">
-        by <%= article.user.username if article.user %>
+        <% if article.user %>
+          by <%= link_to article.user.username, user_path(article.user) %>
+        <% end %>
       </div>
       <div class="card-body">
         <h5 class="card-title"><%= link_to article.title, article_path(article), class: "text-success" %></h5>
