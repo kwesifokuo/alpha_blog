@@ -1,23 +1,13 @@
-<h1 class="text-center mt-4 mb-2"><%= @user.username %></h1>
+<h1 class="text-center mt-4 mb-2"><%= @user.username %>'s profile</h1>
 
-  <div class="row justify-content-center mb-4">
-    <div class="card text-center col-8 shadow mb-4 bg-white rounded">
-      <div class="card-header font-italic">
-        by <%= @user.username if @user %>
+    <div class="img thumbnail">
+        <%= gravatar_for @user, size: 200 %>
       </div>
-      <div class="card-body">
-        <div class="card-text"><strong>Username: </strong> <%= @user.username %></div>
-        <div class="card-text"><strong>Email: </strong> <%= @user.email %></div>
-          <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-outline-success" %> 
-          <%= link_to 'Delete', user_path(@user), class: "btn btn-outline-danger", method: :delete, data: { confirm: "Are you sure?" } %>
-        
-      </div>
-      <div class="card-footer text-muted">
-        <small>Created <%= time_ago_in_words(@user.created_at) %> ago, 
-        edited <%= time_ago_in_words(@user.updated_at) %> ago</small>
-      </div>
-    </div>
-  </div>
+
+  <h3 class="text-center mt-4 mb-2">Articles</h3>
+
+  <%= render 'articles/article' %>
+  
   <div class="text-center">
     <%= link_to "[ Cancel and Return back to articles listing ]", users_path, class: "text-primary" %>
   </div>
