@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :grab_user, only: [:edit, :update, :show, :destroy]
+  before_action :require_user, except: [:show, :index, :new]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
 
   def new
     @user = User.new
@@ -8,8 +10,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      session[:user_id] = @user.id
       flash[:notice] = "Welcome to the Alpha Blog #{@user.username}, you have successfully signed up!"
-      redirect_to users_path
+      redirect_to articles_path
     else
       render 'new'
     end
@@ -28,7 +31,9 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to users_path
+    session[:user_id] = nil
+    flash[:alert] = "User account and all associated articles deleted."
+    redirect_to articles_path
   end
 
   def update
@@ -48,6 +53,14 @@ class UsersController < ApplicationController
 
   def grab_user
     @user = User.find(params[:id])
+    #if 
+  end
+
+  def require_same_user
+    if current_user != @user
+      flash[:alert] = "You can only edit or delete your own accountå"
+      redirect_to @user
+    end
   end
 
 end

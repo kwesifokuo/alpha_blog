@@ -12,7 +12,9 @@
         <p class="card-text"><%= pluralize(user.articles.count, "article") %></p>
         
           <%= link_to 'View profile', user, class: "btn btn-outline-primary" %>
-          <%= link_to 'Edit profile', edit_user_path(user), class: "btn btn-outline-success" %> 
+          <% if logged_in? && user == current_user %>
+            <%= link_to 'Edit profile', edit_user_path(user), class: "btn btn-outline-success" %> 
+          <% end %>
           <!-- <%= link_to 'Delete', user, class: "btn btn-outline-danger", method: :delete, data: { confirm: "Are you sure?" } %> -->
         
       </div>
