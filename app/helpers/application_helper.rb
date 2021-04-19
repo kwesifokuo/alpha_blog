@@ -8,4 +8,12 @@ module ApplicationHelper
     image_tag(gravatar_url, alt: user.username, class: "rounded shadow mx-auto d-block")
   end
 
+  def route_name
+    check_route = "";
+    Rails.application.routes.router.recognize(request) do |route, matches, param|
+      check_route = route.name
+    end
+    current_route = check_route.nil? ? 'home' : check_route
+  end
+
 end
