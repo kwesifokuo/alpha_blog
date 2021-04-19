@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :grab_user, only: [:edit, :update, :show, :destroy]
-  before_action :require_user, except: [:show, :index, :new]
+  before_action :set_user, only: [:edit, :update, :show, :destroy]
+  before_action :require_user, except: [:show, :index, :create, :new]
   before_action :require_same_user, only: [:edit, :update, :destroy]
 
   def new
@@ -51,9 +51,12 @@ class UsersController < ApplicationController
     params.require(:user).permit(:username, :email, :password)
   end
 
-  def grab_user
-    @user = User.find(params[:id])
-    #if 
+  def set_user
+    if !logged_in?
+      redirect_to signup_path
+    else
+      @user = User.find(params[:id])
+    end
   end
 
   def require_same_user
