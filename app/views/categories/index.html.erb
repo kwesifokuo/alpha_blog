@@ -1,0 +1,24 @@
+<h1 class="text-center mt-4 mb-2">Categories Roll</h1>
+
+<div class="flickr_pagination mb-2">
+    <%= will_paginate @categories, :container => false %>
+  </div>
+  <% @categories.each do |category| %>
+    <div class="row justify-content-center mb-4">
+      <div class="card text-center col-4 shadow mb-4 bg-white rounded">
+        
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to category.name, category_path(category), class: "text-success" %></h5>
+          <p class="card-text"><%= pluralize(category.articles.count, "article") %></p>
+        </div>
+        <div class="card-footer text-muted">
+          <small>Created <%= time_ago_in_words(category.created_at) %> ago, 
+          edited <%= time_ago_in_words(category.updated_at) %> ago</small>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+<div class="flickr_pagination mb-5">
+  <%= will_paginate @categories, :container => false %>
+</div>
